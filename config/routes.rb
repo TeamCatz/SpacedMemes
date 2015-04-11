@@ -2,10 +2,14 @@ Rails.application.routes.draw do
   get 'app/browse'
 
   get 'app/create'
+  post 'app/new'
 
   get 'app/share'
 
+  get 'app/byTag'
+
   root 'app#browse'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

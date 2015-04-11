@@ -1,0 +1,7 @@
+<h1>App#byTag</h1>
+<p>Find me in app/views/app/browse.html.erb</p>
+<p>
+    <% @tags.each do |tag| %>
+        <img src="<%= tag.base_image.src %>">
+    <% end %>
+</p>
