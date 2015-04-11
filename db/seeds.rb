@@ -23,9 +23,7 @@ data.each do |element|
   date = element['date']
   if src and src.length > 0 then
     if date.length == 0 then
-      date = 'null'
-    else
-      date = "'#{date}'"
+      date = null
     end
     base_image = BaseImage.create(src: src, title: title, date: date)
     tags.each do |tag|
