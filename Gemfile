@@ -38,7 +38,7 @@ gem 'omniauth-facebook'
 
 gem 'rmagick'
 #Requires imagemagic to be installed, brew install imagemagick
-
+gem 'annotate'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
