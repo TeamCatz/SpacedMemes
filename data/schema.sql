@@ -1,0 +1,17 @@
+CREATE TABLE public.base_images (
+  id BIGSERIAL,
+  src CHARACTER VARYING NOT NULL,
+  title CHARACTER VARYING NOT NULL,
+  date DATE NOT NULL
+);
+
+CREATE TABLE public.tags (
+  id BIGSERIAL,
+  base_image_id INTEGER NOT NULL,
+  tag CHARACTER VARYING NOT NULL
+);
+
+CREATE TABLE public.images (
+  id BIGSERIAL,
+  src CHARACTER VARYING NOT NULL
+);
