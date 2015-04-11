@@ -32,9 +32,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'omniauth'
-gem 'omniauth-twitter'
-gem 'omniauth-facebook'
+#No log in for now dont need
+#gem 'omniauth'
+#gem 'omniauth-twitter'
+#gem 'omniauth-facebook'
+
+#S3 client
+gem 'aws-sdk', '~> 2'
 
 gem 'rmagick'
 #Requires imagemagic to be installed, brew install imagemagick
