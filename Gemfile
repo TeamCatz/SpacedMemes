@@ -36,6 +36,8 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 
+gem 'rmagick'
+#Requires imagemagic to be installed, brew install imagemagick
 
 
 group :development, :test do
