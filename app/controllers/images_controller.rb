@@ -3,17 +3,8 @@ class ImagesController < ApplicationController
   before_filter :set_headers
 
   def post_image_data
-    require 'base64'
-    require 'securerandom'
 
-    return render :json => {
-                      :success => false,
-                      :message => 'you need to specify the data and module parameter.'
-                  } unless params[:data] && params[:module]
-
-    #file = "#{Rails.root}/public/images/pics#{params[:module]}.png"
-
-    png = Base64.decode64(params[:data].gsub(/\n/, '').gsub(' ', '+'))
+    png = Base64.decode64(params[:image].gsub(/\n/, '').gsub(' ', '+'))
     key =  SecureRandom.uuid
     object = S3_BUCKET.put_object(:key => key, :body => png )#, :content_length => png.length)
     if object and object.key == key then
