@@ -8,20 +8,15 @@
 
   <select>
     <option selected>All</option>
-    <option>Most Recent</option>
+    <% @tags.each do |tag| %>
+      <option><%= link_to "#{tag.tag}(#{tag.count})", :action => :byTag, :tag =>tag.tag %></option>
+    <% end %>
   </select>
 
   <div>
-    <a href="/app/create" class="link"><img src="http://placekitten.com/g/350/350" class="thumb"></a>
-    <a href="/app/create" class="link"><img src="http://placekitten.com/g/350/350" class="thumb"></a>
-    <a href="/app/create" class="link"><img src="http://placekitten.com/g/350/350" class="thumb"></a>
-    <a href="/app/create" class="link"><img src="http://placekitten.com/g/350/350" class="thumb"></a>
-    <a href="/app/create" class="link"><img src="http://placekitten.com/g/350/350" class="thumb"></a>
-    <a href="/app/create" class="link"><img src="http://placekitten.com/g/350/350" class="thumb"></a>
-    <a href="/app/create" class="link"><img src="http://placekitten.com/g/350/350" class="thumb"></a>
-    <a href="/app/create" class="link"><img src="http://placekitten.com/g/350/350" class="thumb"></a>
-    <a href="/app/create" class="link"><img src="http://placekitten.com/g/350/350" class="thumb"></a>
-    <a href="/app/create" class="link"><img src="http://placekitten.com/g/350/350" class="thumb"></a>
+    <% @images.each do |image| %>
+      <a href="/app/create" class="link"><img src="<%= "#{S3_IMAGE_BASE}/#{image.src}" %>" class="thumb"></a>
+    <% end %>
   </div>
   
   <span class="button u-full-width">Load More</span>

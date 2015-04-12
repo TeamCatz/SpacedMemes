@@ -40,7 +40,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #S3 client
 gem 'aws-sdk', '~> 2'
 
-gem 'rmagick'
+#gem 'rmagick'
 #Requires imagemagic to be installed, brew install imagemagick
 gem 'annotate'
 

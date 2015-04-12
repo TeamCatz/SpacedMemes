@@ -1,6 +1,7 @@
 class AppController < ApplicationController
   def browse
     @tags = Tags.select(:tag, 'count(*)').all.group(:tag).order(count: :desc)
+    @images = Images.all.order(created_at: :desc).limit(10)
   end
 
   def create
