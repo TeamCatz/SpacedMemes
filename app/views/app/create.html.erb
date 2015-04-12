@@ -81,7 +81,7 @@ var data = '<svg xmlns="http://www.w3.org/2000/svg" width="'+ c.width +'" height
 
       function create(){
         var dataUrl = document.getElementById('memecanvas').toDataURL();
-        dataUrl.replace(/^data:image\/(png|jpg);base64,/, "");
+        dataUrl = dataUrl.replace(/^data:image\/(png|jpg);base64,/, "");
         $.post( "/images/post_image_data", {image: dataUrl}, function( data ) {
           window.location.href = '/app/share?id=' + data.id
         });
