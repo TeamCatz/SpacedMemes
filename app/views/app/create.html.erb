@@ -1,2 +1,64 @@
-<h1>App#create</h1>
-<p>Find me in app/views/app/create.html.erb</p>
+<%= render "shared/header" %>
+
+<div class="container">
+  
+  <div class="image-wrapper">
+    <span class="text text-top js-top-text">You'll Get'em</span>
+    <span class="text text-bottom js-bottom-text">Next Time</span>
+    <img src="http://placekitten.com/g/350/350" class="image">
+  </div>
+  
+  <div class="card">
+    <div class="item item-divider">
+      Top Text
+    </div>
+    <div class="item item-text">
+      <input type="text" class="u-full-width js-top-text-input" placeholder="Enter text">
+      <select class="js-top-font-size">
+        <option selected>24px</option>
+        <option>32px</option>
+        <option>40px</option>
+        <option>48px</option>
+      </select>
+      <select>
+        <option selected>Helvetica</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="item item-divider">
+      Bottom Text
+    </div>
+    <div class="item item-text">
+      <input type="text" class="u-full-width js-bottom-text-input" placeholder="Enter text">
+      <select class="js-bottom-font-size">
+        <option selected>24px</option>
+        <option>32px</option>
+        <option>40px</option>
+        <option>48px</option>
+      </select>
+      <select>
+        <option selected>Helvetica</option>
+      </select>
+    </div>
+  </div>
+  
+  <a href="/app/share" class="button button-primary">Create</a>
+  
+</div>
+
+<script type="text/javascript">
+  $(function() {
+    // Text Top
+    $('.js-top-text-input').keyup(function() {
+      var textTop = $(this).val();
+      $('.js-top-text').text(textTop);
+    });
+    // Text Bottom
+    $('.js-bottom-text-input').keyup(function() {
+      var textBottom = $(this).val();
+      $('.js-bottom-text').text(textBottom);
+    });
+  });
+</script>
