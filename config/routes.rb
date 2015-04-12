@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   get 'app/byTag'
 
+  get 'images/getImage'
+
   root 'app#browse'
 
 
