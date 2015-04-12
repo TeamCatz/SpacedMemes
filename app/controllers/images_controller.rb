@@ -26,4 +26,11 @@ class ImagesController < ApplicationController
     end
 
   end
+
+  def getImage
+    base_image = BaseImage.find(params[:id])
+    #@image = Net::HTTP.get(URI.parse(base_image.src))
+    data =  Net::HTTP.get(URI.parse(base_image.src))
+    send_data data, disposition: 'inline'
+  end
 end

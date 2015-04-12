@@ -2,17 +2,17 @@
 
 <div class="container">
 
-  <select>
-    <option selected>All</option>
+  <select onchange="if (this.selectedIndex) window.location.href = '/?tag=' + this.options[this.selectedIndex].value ">
+    <option>All</option>
     <% @tags.each do |tag| %>
-      <option><%= link_to "#{tag.tag}(#{tag.count})", :action => :byTag, :tag =>tag.tag %></option>
+      <option value="<%= tag.tag %>" <%= if tag.tag == params[:tag] then 'selected' end %> ><%= "#{tag.tag}(#{tag.count})"%></option>
     <% end %>
   </select>
 
   <div>
-    <%  %> <!-- @images.each do |image| -->
-      <a href="/app/create" class="link"><img src="<%=  %>" class="thumb"></a> <!-- "#{S3_IMAGE_BASE}/#{image.src}" -->
-    <%  %> <!-- end -->
+    <%  @base_images.each do |image| %>
+      <a href="/app/create?id=<%=image.base_image.id%>" class="link"><img src="<%= image.base_image.src  %>" class="thumb"></a>
+    <% end %>
   </div>
   
   <span class="button u-full-width">Load More</span>
