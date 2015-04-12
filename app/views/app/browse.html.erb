@@ -14,9 +14,9 @@
   </select>
 
   <div>
-    <% @images.each do |image| %>
-      <a href="/app/create" class="link"><img src="<%= "#{S3_IMAGE_BASE}/#{image.src}" %>" class="thumb"></a>
-    <% end %>
+    <%  %> <!-- @images.each do |image| -->
+      <a href="/app/create" class="link"><img src="<%=  %>" class="thumb"></a> <!-- "#{S3_IMAGE_BASE}/#{image.src}" -->
+    <%  %> <!-- end -->
   </div>
   
   <span class="button u-full-width">Load More</span>
