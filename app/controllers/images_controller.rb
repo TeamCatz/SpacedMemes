@@ -33,4 +33,32 @@ class ImagesController < ApplicationController
     data =  Net::HTTP.get(URI.parse(base_image.src))
     send_data data, disposition: 'inline'
   end
+
+  def loadMore
+      more = 50
+      start = params[:start].to_i
+      if params[:tag] and params[:tag].length > 0 then
+        @total_count = Tags.where(tag: params[:tag]).count
+        tags = Tags.where(tag: params[:tag]).limit(more).offset(start)
+        @base_images = []
+        tags.each do |tag|
+          @base_images << tag.base_image
+        end
+      else
+        @total_count = BaseImage.all.count
+        @base_images = BaseImage.all.limit(more).offset(start)
+      end
+      if @total_count > start + more
+        has_more = true
+      else
+        has_more = false
+      end
+      images = []
+
+      result = {
+          :has_more => has_more.to_s,
+          :images => @base_images
+      }
+    send_data result.to_json
+  end
 end

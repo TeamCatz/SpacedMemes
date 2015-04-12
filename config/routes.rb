@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get 'images/getImage'
 
+  get 'images/loadMore'
+
   root 'app#browse'
 
 

@@ -9,12 +9,30 @@
     <% end %>
   </select>
 
-  <div>
+  <div id="base_images">
     <%  @base_images.each do |image| %>
-      <a href="/app/create?id=<%=image.base_image.id%>" class="link"><img src="<%= image.base_image.src  %>" class="thumb"></a>
+      <a href="/app/create?id=<%=image.id%>" class="link"><img src="<%= image.src  %>" class="thumb"></a>
     <% end %>
   </div>
-  
-  <span class="button u-full-width">Load More</span>
+  <% if @total_count > @LoadLimit then %>
+  <span class="button u-full-width" onclick="loadMore();" id="loadMore">Load More</span>
+        <script type="text/javascript">
+            var currentCount = <%= @LoadLimit %>
+            var tag = '<%= params[:tag] %>'
+            function loadMore(button){
+              $.getJSON( "/images/loadMore?start=" + currentCount+1 + "&tag=" + tag, function( data ) {
+                var items = [];
+                var images = $('#base_images');
+                $.each( data.images, function(index, val ) {
+                  $('<a href="/app/create?id="' + val.id +' class="link"><img src="' + val.src + '" class="thumb"></a>').appendTo(images);
+                });
+                currentCount = currentCount + data.images.length;
+                if(!data.has_more){
+                  $('#loadMore').hide();
+                }
+              });
+            }
+        </script>
+  <% end %>
 
 </div>
