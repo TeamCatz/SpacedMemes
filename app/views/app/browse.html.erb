@@ -1,6 +1,11 @@
 <h1>App#browse</h1>
 <p>Find me in app/views/app/browse.html.erb</p>
 <p>
+    <% @images.each do |image| %>
+       <img src="<%= "#{S3_IMAGE_BASE}/#{image.src}" %>" />
+    <% end %>
+</p>
+<p>
     <% @tags.each do |tag| %>
         <%= link_to "#{tag.tag}(#{tag.count})", :action => :byTag, :tag =>tag.tag %><br />
     <% end %>

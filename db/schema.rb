@@ -22,29 +22,14 @@ ActiveRecord::Schema.define(version: 20150411222809) do
     t.date   "date"
   end
 
-  create_table "base_images_", id: :bigserial, force: :cascade do |t|
-    t.string "src",   null: false
-    t.string "title", null: false
-    t.date   "date",  null: false
-  end
-
   create_table "images", force: :cascade do |t|
     t.string "src"
-  end
-
-  create_table "images_", id: false, force: :cascade do |t|
-    t.integer "id",  limit: 8, default: "nextval('images_id_seq'::regclass)", null: false
-    t.string  "src",                                                          null: false
+    t.date   "created_at"
   end
 
   create_table "tags", force: :cascade do |t|
     t.integer "base_image_id"
     t.string  "tag"
-  end
-
-  create_table "tags_", id: :bigserial, force: :cascade do |t|
-    t.integer "base_image_id", null: false
-    t.string  "tag",           null: false
   end
 
 end
