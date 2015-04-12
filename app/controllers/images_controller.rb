@@ -5,12 +5,14 @@ class ImagesController < ApplicationController
   def post_image_data
 
     png = Base64.decode64(params[:image].gsub(/\n/, '').gsub(' ', '+'))
-    key =  SecureRandom.uuid
+    key =  SecureRandom.uuid + '.png'
     object = S3_BUCKET.put_object(:key => key, :body => png )#, :content_length => png.length)
     if object and object.key == key then
-      Images.create(:src => key)
+      image = Images.create(:src => key)
       render :json => {
-                 :success => true
+                 :success => true,
+                 :id => image.id
+
              }
     else
       render :json => {
