@@ -1,0 +1,18 @@
+/* layout.css */
+
+/* Container */
+.container {
+  width: 87.5%;
+  margin: 0 auto 1.5rem;
+}
+
+/* Primary Buttons */
+.button.button-primary,
+button.button-primary,
+input[type="submit"].button-primary,
+input[type="reset"].button-primary,
+input[type="button"].button-primary {
+  color: #FFF;
+  background-color: #078f2f;
+  border-color: #078f2f;
+}

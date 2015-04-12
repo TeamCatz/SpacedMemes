@@ -21,3 +21,7 @@
   height: 130px;
   display: block;
 }
+
+select {
+  width: 100%;
+}

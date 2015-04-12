@@ -1,8 +1,16 @@
-/* ...
-*= require reset
-*= require skeleton
-*= require header
-*= require browse
-*= require create
-*= require share
-*/
+/* application.css */
+
+/* Vendor */
+@import 'reset.css';
+
+/* Global */
+@import 'base.css';
+@import 'layout.css';
+
+/* Partials */
+@import 'header.css';
+
+/* Templates */
+@import 'browse.css';
+@import 'create.css';
+@import 'share.css';

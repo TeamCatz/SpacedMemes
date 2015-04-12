@@ -1,7 +1,29 @@
-<h1>App#browse</h1>
-<p>Find me in app/views/app/browse.html.erb</p>
-<p>
-    <% @tags.each do |tag| %>
-        <%= link_to "#{tag.tag}(#{tag.count})", :action => :byTag, :tag =>tag.tag %><br />
-    <% end %>
-</p>
+<div class="header-wrapper">
+  <div class="content">
+    <h1 class="title"><a href="index.html">Space<span class="gray">Snaps</span></a></h1>
+  </div>
+</div>
+
+<div class="container">
+
+  <select>
+    <option selected>All</option>
+    <option>Most Recent</option>
+  </select>
+
+  <div>
+    <a href="/app/create" class="link"><img src="http://placekitten.com/g/350/350" class="thumb"></a>
+    <a href="/app/create" class="link"><img src="http://placekitten.com/g/350/350" class="thumb"></a>
+    <a href="/app/create" class="link"><img src="http://placekitten.com/g/350/350" class="thumb"></a>
+    <a href="/app/create" class="link"><img src="http://placekitten.com/g/350/350" class="thumb"></a>
+    <a href="/app/create" class="link"><img src="http://placekitten.com/g/350/350" class="thumb"></a>
+    <a href="/app/create" class="link"><img src="http://placekitten.com/g/350/350" class="thumb"></a>
+    <a href="/app/create" class="link"><img src="http://placekitten.com/g/350/350" class="thumb"></a>
+    <a href="/app/create" class="link"><img src="http://placekitten.com/g/350/350" class="thumb"></a>
+    <a href="/app/create" class="link"><img src="http://placekitten.com/g/350/350" class="thumb"></a>
+    <a href="/app/create" class="link"><img src="http://placekitten.com/g/350/350" class="thumb"></a>
+  </div>
+  
+  <span class="button u-full-width">Load More</span>
+
+</div>

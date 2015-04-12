@@ -6,7 +6,8 @@
   padding-top: 13px;
   margin-bottom: 1.5rem;
   color: #fff;
-  background: #1f0043;
+  background: url('../img/background-header.jpg') 0 0 #1f0043;
+  background-size: cover;
   box-sizing: border-box;
 }
 
@@ -15,4 +16,16 @@
   font-size: 24px;
   text-align: center;
   font-family: 'Ubuntu Condensed', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .015625em;
+  line-height: 1em;
+}
+
+/* Header Wrapper: Title: Anchor */
+.header-wrapper .title a {
+  color: inherit;
+}
+
+.header-wrapper .title .gray {
+  color: #ccc;
 }
