@@ -6,9 +6,19 @@
   padding-top: 13px;
   margin-bottom: 1.5rem;
   color: #fff;
-  background: url('../img/background-header.jpg') 0 0 #1f0043;
+  background: url('background-header.jpg') 0 0 #1f0043;
   background-size: cover;
   box-sizing: border-box;
+}
+
+/* SpaceSnaps Logo */
+.logo-spacesnaps {
+  width: 26px;
+  height: 20px;
+  display: inline-block;
+  margin-right: 5px;
+  background: url('logo-spacesnaps.png') 0 0;
+  background-size: cover;
 }
 
 /* Header Wrapper: Title */
