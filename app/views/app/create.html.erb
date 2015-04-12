@@ -3,7 +3,7 @@
 <div class="container">
 
     <div class="image-wrapper">
-        <img src="<%= "/images/getImage?id=#{@base_image.id}"%>" class="image" id="base_image" style="display: none" onload="drawCanvas();">
+        <img src="<%= "/images/getImage?id=#{@base_image.id}"%>" class="image" id="base_image" style="display: none" onload="drawCanvas();" crossOrigin="Anonymous">
         <!--<span class="text text-top js-top-text">You'll Get'em</span>-->
         <!--<span class="text text-bottom js-bottom-text">Next Time</span>-->
         <canvas id="memecanvas" width="280" height="280" style="border:1px solid #d3d3d3;" class="image" >
@@ -11,8 +11,6 @@
     </div>
 
     <!--<button type="button" id="doit">Get Image</button>-->
-    <a id="download">Download</a>
-
     <script>
 
       //var canvas = document.getElementById('canvas');
@@ -77,6 +75,14 @@
         link.href = dataUrl;
       }
 
+      function create(){
+        var dataUrl = document.getElementById('memecanvas').toDataURL();
+        dataUrl.replace(/^data:image\/(png|jpg);base64,/, "");
+        $.post( "images/post_image_data", {image: dataUrl}, function( data ) {
+          window.location.href = '/app/share?id=' + data.id
+        });
+      }
+
       /**
        * The event handler for the link's onclick event. We give THIS as a
        * parameter (=the link element), ID of the canvas and a filename.
@@ -137,7 +143,7 @@
     </div>
   </div>
   
-  <a href="/app/share" class="button button-primary">Create</a>
+  <button onclick="create();" class="button button-primary">Create</button>
   
 </div>
 

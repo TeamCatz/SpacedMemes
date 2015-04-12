@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get 'images/loadMore'
 
+  post 'images/post_image_data'
+
   root 'app#browse'
 
 
