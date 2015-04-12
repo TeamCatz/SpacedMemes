@@ -1,0 +1,23 @@
+/* browse.css */
+
+.link {
+  margin: 0 10px 20px;
+  float: left;  
+}
+
+/* Odd Links */
+.link:nth-child(odd) {
+  margin-left: 0;
+}
+
+/* Even Links */
+.link:nth-child(even) {
+  margin-right: 0;
+}
+
+/* Thumb */
+.thumb {
+  width: 130px;
+  height: 130px;
+  display: block;
+}
