@@ -23,6 +23,7 @@ class AppController < ApplicationController
   end
 
   def share
+    @image = Images.find(params[:id])
   end
 
 end
