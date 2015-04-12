@@ -1,19 +1,112 @@
 <%= render "shared/header" %>
 
 <div class="container">
-  
-  <div class="image-wrapper">
-    <span class="text text-top js-top-text">You'll Get'em</span>
-    <span class="text text-bottom js-bottom-text">Next Time</span>
-    <img src="<%= "/images/getImage?id=#{@base_image.id}"%>" class="image" id="base_image">
-  </div>
+
+    <div class="image-wrapper">
+        <img src="<%= "/images/getImage?id=#{@base_image.id}"%>" class="image" id="base_image" style="display: none" onload="drawCanvas();">
+        <!--<span class="text text-top js-top-text">You'll Get'em</span>-->
+        <!--<span class="text text-bottom js-bottom-text">Next Time</span>-->
+        <canvas id="memecanvas" width="280" height="280" style="border:1px solid #d3d3d3;" class="image" >
+            Your browser does not support the HTML5 canvas tag.</canvas>
+    </div>
+
+    <!--<button type="button" id="doit">Get Image</button>-->
+    <a id="download">Download</a>
+
+    <script>
+
+      //var canvas = document.getElementById('canvas');
+      //var ctx = canvas.getContext('2d');
+
+
+      function drawCanvas() {
+        var c = document.getElementById("memecanvas");
+        var ctx = c.getContext("2d");
+        ctx.fillStyle="#000";
+        ctx.fillRect(0,0,c.width,c.height);
+        var memeimg = document.getElementById("base_image");
+        var topText = $('.js-top-text-input').val()
+        var bottomText = $('.js-bottom-text-input').val();
+        var data = '<svg xmlns="http://www.w3.org/2000/svg" width="'+ c.width +'" height="'+ c.height +'">' +
+                '<foreignObject width="100%" height="100%">' +
+                '<div xmlns="http://www.w3.org/1999/xhtml" style="font-family:\'Helvetica Neue\',Helvetica, Arial, sans-serif;font-size:40px">' +
+                '<text>' +
+                '<tspan text-anchor="middle" style="color:white; text-shadow:0 0 2px blue;">' + topText +'</tspan>' +
+                '</text>' +
+                '</div>' +
+                '</foreignObject>' +
+                '</svg>';
+
+        var DOMURL = window.URL || window.webkitURL || window;
+
+        var destWidth = c.width;
+        var destHeight = c.height * memeimg.height / memeimg.width;
+        var startY = (destHeight < c.height) ? ((c.height - destHeight) /2) : 0;
+        ctx.drawImage(memeimg, 0, startY, destWidth, destHeight);
+
+
+        var img = new Image();
+        var svg = new Blob([data], {type: 'image/svg+xml;charset=utf-8'});
+        var url = DOMURL.createObjectURL(svg);
+
+        img.onload = function () {
+          ctx.drawImage(img, 0, 0);
+          DOMURL.revokeObjectURL(url);
+        }
+
+        img.src = url;
+
+//goodbye
+
+
+        // call next step in your code here, f.ex: nextStep();
+        //img.crossOrigin="Anonymous";
+        //img.src = "http://apod.nasa.gov/apod/image/1410/butterflyblue_hst_960.jpg";
+        //img.style = "display:none";
+      }
+
+      /**
+       * This is the function that will take care of image extracting and
+       * setting proper filename for the download.
+       * IMPORTANT: Call it from within a onclick event.
+       */
+      function downloadCanvas(link, canvasId, filename) {
+        var dataUrl = document.getElementById(canvasId).toDataURL();
+        dataUrl.replace(/^data:image\/(png|jpg);base64,/, "");
+        link.download = filename;
+        link.href = dataUrl;
+      }
+
+      /**
+       * The event handler for the link's onclick event. We give THIS as a
+       * parameter (=the link element), ID of the canvas and a filename.
+       */
+      document.getElementById('download').addEventListener('click', function() {
+        downloadCanvas(this, 'memecanvas', 'meme.png');
+      }, false);
+/*
+      document.getElementById('doit').addEventListener('click', function() {
+        drawCanvas();
+      }, false);
+*
+*/
+
+    </script>
+
+
+
+
+
+
+
+
   
   <div class="card">
     <div class="item item-divider">
       Top Text
     </div>
     <div class="item item-text">
-      <input type="text" class="u-full-width js-top-text-input" placeholder="Enter text">
+      <input type="text" class="u-full-width js-top-text-input" placeholder="Enter text" id="top-text">
       <select class="js-top-font-size" style="display: none;">
         <option selected>24px</option>
         <option>32px</option>
@@ -31,7 +124,7 @@
       Bottom Text
     </div>
     <div class="item item-text">
-      <input type="text" class="u-full-width js-bottom-text-input" placeholder="Enter text">
+      <input type="text" class="u-full-width js-bottom-text-input" placeholder="Enter text" id="bottom-text">
       <select class="js-bottom-font-size" style="display: none;">
         <option selected>24px</option>
         <option>32px</option>
@@ -52,13 +145,11 @@
   $(function() {
     // Text Top
     $('.js-top-text-input').keyup(function() {
-      var textTop = $(this).val();
-      $('.js-top-text').text(textTop);
+      drawCanvas();
     });
     // Text Bottom
     $('.js-bottom-text-input').keyup(function() {
-      var textBottom = $(this).val();
-      $('.js-bottom-text').text(textBottom);
+      drawCanvas();
     });
   });
 </script>
