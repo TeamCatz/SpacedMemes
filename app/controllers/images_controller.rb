@@ -6,7 +6,7 @@ class ImagesController < ApplicationController
 
     png = Base64.decode64(params[:image].gsub(/\n/, '').gsub(' ', '+'))
     key =  SecureRandom.uuid + '.png'
-    object = S3_BUCKET.put_object(:key => key, :body => png )#, :content_length => png.length)
+    object = S3_BUCKET.put_object(:key => key, :body => png, :content_type => 'image/png' )#, :content_length => png.length)
     if object and object.key == key then
       image = Images.create(:src => key)
       render :json => {
